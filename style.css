@@ -1,0 +1,390 @@
+ 
+body {
+  --bg: #ffffff;          /* main page background         */
+  --bg-alt: #f6f6f4;      /* background of every 2nd section */
+  --text: #111111;        /* main text colour             */
+  --text-muted: #6b6b6b;  /* lighter grey text            */
+  --border: #e4e4e1;      /* thin divider lines           */
+  --accent: #2f54eb;      /* the single brand colour      */
+}
+ 
+/* Dark theme: the JavaScript adds the class "dark-theme"
+   to <body>. We only need to give the variables new values;
+   every rule below that uses var(...) updates automatically. */
+.dark-theme {
+  --bg: #0e0e10;
+  --bg-alt: #17171a;
+  --text: #f2f2f2;
+  --text-muted: #9a9a9f;
+  --border: #2a2a2e;
+  --accent: #7c93ff;
+}
+ 
+ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* width now INCLUDES padding + border */
+}
+ 
+html {
+  scroll-behavior: smooth; /* nav links glide instead of jumping */
+}
+ 
+body {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+  transition: background-color 0.3s, color 0.3s; /* smooth theme switch */
+}
+ 
+a {
+  color: inherit;          /* links use the same colour as the text */
+  text-decoration: none;
+}
+ 
+ 
+.container {
+  max-width: 1100px;
+  margin: 0 auto;          /* "auto" left/right = centred */
+  padding: 0 32px;         /* breathing room on small screens */
+}
+ 
+ 
+nav {
+  position: fixed;        /* stays at the top while scrolling */
+  top: 0;
+  z-index: 10;             /* sits above the other content */
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+ 
+.nav-inner {
+  display: flex;
+  align-items: center;     /* vertical centring */
+  justify-content: space-between;
+  gap: 24px;
+  height: 68px;
+}
+ 
+.logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+}
+ 
+nav ul {
+  display: flex;
+  gap: 32px;
+  list-style-type: none;   /* removes the bullet points */
+  margin-left: auto;       /* pushes the links to the right */
+}
+ 
+nav ul li a {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+ 
+nav ul li a:hover {
+  color: var(--text);
+}
+ 
+#toggle-theme {
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  color: var(--text);
+  background-color: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;    /* very large radius = pill shape */
+  cursor: pointer;
+  animation: float 2s infinite;
+}
+ 
+#toggle-theme:hover {
+  border-color: var(--text);
+}
+ 
+ 
+header {
+  padding: 140px 0 120px;
+  border-bottom: 1px solid var(--border);
+  animation: fade-up 2s ease-out; /* plays once on page load */
+}
+ 
+.eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+ 
+header h1 {
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em; /* tighter letters look modern on big text */
+}
+ 
+.tagline {
+  max-width: 560px;
+  margin-top: 24px;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+}
+ 
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+}
+ 
+@keyframes fade-up { 
+  
+  from {
+    opacity: 0;             /* invisible */
+    transform: translateY(20px);
+  }
+  
+  to {
+    opacity: 1;             /* fully visible */
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% , 100%  {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+}
+ 
+ 
+.btn {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--text);
+  cursor: pointer;
+  transition: opacity 0.2s, background-color 0.2s, color 0.2s;
+}
+ 
+.btn-primary {
+  background-color: var(--text);
+  color: var(--bg);
+}
+ 
+.btn-primary:hover {
+  opacity: 0.8;
+}
+ 
+.btn-outline {
+  background-color: transparent;
+  color: var(--text);
+}
+ 
+.btn-outline:hover {
+  background-color: var(--text);
+  color: var(--bg);
+}
+ 
+ 
+.section-blocks {
+  padding: 110px 0;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 68px; /* so the sticky nav doesn't cover the heading */
+}
+ 
+/* Every second section gets a slightly different background */
+.section-alt {
+  background-color: var(--bg-alt);
+}
+ 
+.section-blocks .container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 64px;
+}
+ 
+.section-heading h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+ 
+.section-heading p {
+  margin-top: 16px;
+  color: var(--text-muted);
+}
+ 
+ 
+.section-item {
+  display: grid;
+  grid-template-columns: 1fr auto;  /* left column grows, right fits content */
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+}
+ 
+.section-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+ 
+.section-item h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+ 
+.section-item:hover h3 {
+  color: var(--accent);
+}
+ 
+.item-place {
+  color: var(--text-muted);
+  grid-column: 1;           /* stays in the left column, under the title */
+}
+ 
+.item-year {
+  grid-column: 2;           /* move the year to the right column...  */
+  grid-row: 1;              /* ...on the same line as the title      */
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums; /* numbers line up neatly */
+}
+ 
+ 
+.form-group {
+  margin-bottom: 24px;
+}
+ 
+label {
+  display: block;           /* puts the label on its own line */
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+ 
+input,
+textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 14px 16px;
+  color: var(--text);
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+ 
+textarea {
+  min-height: 160px;
+  resize: vertical;         /* user can only resize up/down */
+}
+ 
+/* :focus = the field the user is currently typing in */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+ 
+ 
+ 
+#admin-login {
+  display: none;
+}
+ 
+#user-responses {
+  display: none;
+}
+
+#user-messages div {
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+ 
+#user-messages p {
+  margin-bottom: 4px;
+}
+ 
+/* The JS also adds an <hr> line - the card border already
+   separates messages, so we hide it. */
+#user-messages hr {
+  display: none;
+}
+ 
+ 
+footer {
+  padding: 40px 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+ 
+ 
+/* ---------------------------------------------------------
+   12. MOBILE SCREENS
+   Everything inside this block only applies when the
+   screen is 768px wide or less (phones, small tablets).
+   --------------------------------------------------------- */
+@media (max-width: 768px) {
+ 
+  .container {
+    padding: 0 20px;
+  }
+ 
+  /* Let the nav wrap onto two lines */
+  .nav-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    row-gap: 12px;
+  }
+ 
+  nav ul {
+    order: 3;               /* move the links below logo + button */
+    width: 100%;
+    margin-left: 0;
+    flex-wrap: wrap;        /* links drop to a new line if they don't fit */
+    gap: 8px 20px;          /* 8px between rows, 20px between links */
+  }
+ 
+  header {
+    padding: 80px 0 72px;
+  }
+ 
+  header h1 {
+    font-size: 3.2rem;
+  }
+ 
+  .tagline {
+    font-size: 1.1rem;
+  }
+ 
+  .section-blocks {
+    padding: 72px 0;
+    scroll-margin-top: 100px;
+  }
+ 
+  /* One column instead of two: heading on top, content below */
+  .section-blocks .container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
